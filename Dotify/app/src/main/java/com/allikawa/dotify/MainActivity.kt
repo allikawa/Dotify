@@ -13,34 +13,47 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
+    private val randomNumber = Random.nextInt(1000, 10000)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val randomNumber = Random.nextInt(1000, 10000) // exclusive, so not 9999
-
         val tvPlayNum = findViewById<TextView>(R.id.tvPlayNum)
-        tvPlayNum.text = randomNumber.toString()
-
-        // val etUsername = findViewById<TextView>(R.id.etUsername)
-        // etUsername.setVisibility(View.GONE)
+        tvPlayNum.text = randomNumber.toString() + " plays"
     }
 
-    fun changeClicked(view: View) { // for the [change user] state btn
-        Log.i("allikawa", "submitButtonClicked")
-
-        Toast.makeText(this, "Toast is ready!", Toast.LENGTH_SHORT).show()
-
-        // val btnChange = findViewById<Button>(R.id.btnChange)
-        // btnChange.text = "Apply"
+    fun changeClicked(view: View) {
 
         val tvUsername = findViewById<TextView>(R.id.tvUsername)
-        tvUsername.setVisibility(View.GONE)
+        val btnChange = findViewById<Button>(R.id.btnChange)
+        val etUsername = findViewById<EditText>(R.id.etUsername)
 
-        // val etUsername = findViewById<EditText>(R.id.etUsername)
-        // val userInputName = etUsername.text.toString()
+        if (btnChange.text == "Change User") {
+            tvUsername.setVisibility(View.INVISIBLE)
+            etUsername.setVisibility(View.VISIBLE)
+            btnChange.text = "Apply"
+        } else {
+            btnChange.text = "Change User"
+            tvUsername.setText(etUsername.text.toString())
+            tvUsername.setVisibility(View.VISIBLE)
+            etUsername.setVisibility(View.INVISIBLE)
+        }
+    }
 
-        // userInputName
+    fun changePlayNum(view: View) {
+        val tvPlayNum = findViewById<TextView>(R.id.tvPlayNum)
+        val justNum = tvPlayNum.text.toString().removeSuffix(" plays")
+        val playNum = justNum.toInt() + 1
+        tvPlayNum.setText(playNum.toString() + " plays")
+    }
 
+    fun toastPrevious(view: View) {
+        Toast.makeText(this, "Skipping to previous track", Toast.LENGTH_SHORT).show()
+    }
+
+    fun toastNext(view: View) {
+        Toast.makeText(this, "Skipping to next track", Toast.LENGTH_SHORT).show()
     }
 }
+

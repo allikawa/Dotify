@@ -4,18 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/tvPlayNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="516dp"
-        android:text="13123"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:padding="16dp"
+    tools:context=".MainActivity">
 
     <Button
         android:id="@+id/btnChange"
@@ -25,102 +15,110 @@
         android:layout_marginTop="20dp"
         android:onClick="changeClicked"
         android:text="Change User"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="allikawa"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnChange"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnChange" />
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/btnChange"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnChange"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/ivAlbumCover"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:contentDescription="Album art Frank Ocean"
-        android:scaleType="fitCenter"
         android:src="@drawable/frankocean"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toBottomOf="@+id/btnChange"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:scaleType="fitCenter"
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/tvSongTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Self Control"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.632" />
+        app:layout_constraintTop_toBottomOf="@+id/ivAlbumCover"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="16dp"
+        android:textSize="32dp"
+        android:textFontWeight="700"/>
 
     <TextView
         android:id="@+id/tvArtistName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Frank Ocean"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691" />
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:singleLine="false"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongTitle"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/tvPlayNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13123"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvArtistName"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"/>
 
     <ImageButton
-    android:id="@+id/btnPlay"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/ic_play"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.928" />
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_play"
+        android:onClick="changePlayNum"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageButton
         android:id="@+id/btnPrevious"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
         android:background="@drawable/ic_previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.216"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.903" />
+        android:onClick="toastPrevious"
+        app:layout_constraintBottom_toBottomOf="@+id/btnPlay"
+        app:layout_constraintRight_toLeftOf="@+id/btnPlay"
+        app:layout_constraintTop_toTopOf="@+id/btnPlay" />
 
     <ImageButton
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
         android:background="@drawable/ic_next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.823"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.896" />
+        android:onClick="toastNext"
+        app:layout_constraintBottom_toBottomOf="@+id/btnPlay"
+        app:layout_constraintLeft_toRightOf="@+id/btnPlay"
+        app:layout_constraintTop_toTopOf="@+id/btnPlay" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
