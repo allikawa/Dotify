@@ -9,4 +9,4 @@ For this assignment, I attempted extra credit number 5.
 
 Below is a screenshot of my app running in an emulator:
 
-![Img of Dotify](dotify.png)
+![Img of Dotify](dotify_working.png)
