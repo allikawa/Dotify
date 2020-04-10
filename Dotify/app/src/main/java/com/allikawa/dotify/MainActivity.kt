@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         if (btnChange.text == "Change User") {
             tvUsername.setVisibility(View.INVISIBLE)
             etUsername.setVisibility(View.VISIBLE)
+            val inputedName = etUsername.text.toString()
             btnChange.text = "Apply"
         } else {
             btnChange.text = "Change User"
