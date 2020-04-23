@@ -3,6 +3,7 @@ package com.allikawa.dotify
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AdapterView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_song_list.*
 import android.widget.Toast
@@ -34,11 +35,19 @@ class SongListActivity : AppCompatActivity() {
             }
         }
 
-        btnShuffle.setOnClickListener {
+        songAdapter.onLongSongClickListener = {song, position ->
             val newSongs = allSongs.apply {
-                shuffle()
+                removeAt(position)
+//                songAdapter.notifyItemRangeChanged(position, allSongs.size - 1)
+//                songAdapter.notifyDataSetChanged()
+                Toast.makeText(this@SongListActivity,"You deleted ${song.title}", Toast.LENGTH_SHORT).show()
             }
-            songAdapter.change(newSongs)
+            songAdapter.remove(newSongs)
+        }
+
+        btnShuffle.setOnClickListener {
+            val shuffledList = allSongs.shuffled()
+            songAdapter.change(shuffledList)
         }
 
         rvSongs.adapter = songAdapter
