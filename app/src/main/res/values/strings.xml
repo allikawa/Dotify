@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dotify</string>
+    <string name="songlist_activity_title">All Songs</string>
 </resources>
