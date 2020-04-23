@@ -1,10 +1,12 @@
 package com.allikawa.dotify
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_song_list.*
 import android.widget.Toast
+import com.allikawa.dotify.MainActivity.Companion.SONG_KEY
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import java.util.Collections.shuffle
@@ -19,10 +21,16 @@ class SongListActivity : AppCompatActivity() {
 
         val songAdapter = SongAdapter(allSongs)
 
-        songAdapter.onPersonClickListener = { name, artist, position ->
-            // Toast.makeText(this, "My name is: $name at $position", Toast.LENGTH_SHORT).show()
+        songAdapter.onSongClickListener = { song: Song ->
             val tvCurrentTrack= findViewById<TextView>(R.id.tvCurrentTrack)
-            tvCurrentTrack.text = "$name - $artist"
+            tvCurrentTrack.text = "${song.title} - ${song.artist}"
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(SONG_KEY, song)
+
+            flPlay.setOnClickListener {
+                startActivity(intent)
+            }
         }
 
         btnShuffle.setOnClickListener {

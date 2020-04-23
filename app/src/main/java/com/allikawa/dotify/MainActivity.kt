@@ -8,16 +8,28 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.ericchee.songdataprovider.Song
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val SONG_KEY = "SONG_KEY"
+    }
 
     private val randomNumber = Random.nextInt(1000, 10000)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val song = intent.getParcelableExtra<Song>(SONG_KEY)
+
+        tvSongTitle.text = song.title
+        tvArtistName.text = song.artist
+        ivAlbumCover.setImageResource(song.largeImageID)
 
         val tvPlayNum = findViewById<TextView>(R.id.tvPlayNum)
         tvPlayNum.text = randomNumber.toString() + " plays"

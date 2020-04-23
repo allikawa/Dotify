@@ -13,7 +13,7 @@ import com.ericchee.songdataprovider.Song
 
 class SongAdapter(private var listOfSongs: List<Song>): RecyclerView.Adapter<SongAdapter.SongViewHolder>(){
 
-    var onPersonClickListener: ((name: String, artist: String, position: Int) -> Unit)? = null
+    var onSongClickListener: ((song: Song) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_song, parent, false)
@@ -25,7 +25,7 @@ class SongAdapter(private var listOfSongs: List<Song>): RecyclerView.Adapter<Son
 
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val songName = listOfSongs[position]
-        holder.bind(songName, position)
+        holder.bind(songName)
     }
 
     fun change(newSongs: List<Song>) {
@@ -38,13 +38,13 @@ class SongAdapter(private var listOfSongs: List<Song>): RecyclerView.Adapter<Son
         private val tvArtistName by lazy { itemView.findViewById<TextView>(R.id.tvArtistName)}
         private val ivAlbumCover by lazy { itemView.findViewById<ImageView>(R.id.ivAlbumCover)}
 
-        fun bind(song: Song, position: Int) {
+        fun bind(song: Song) {
             tvSongName.text = song.title
             tvArtistName.text = song.artist
             ivAlbumCover.setImageResource(song.smallImageID)
 
             itemView.setOnClickListener {
-                onPersonClickListener?.invoke(song.title, song.artist, position)
+                onSongClickListener?.invoke(song)
             }
         }
     }
