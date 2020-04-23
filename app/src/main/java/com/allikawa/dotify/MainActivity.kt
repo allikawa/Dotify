@@ -3,6 +3,7 @@ package com.allikawa.dotify
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val song = intent.getParcelableExtra<Song>(SONG_KEY)
 
@@ -67,6 +70,14 @@ class MainActivity : AppCompatActivity() {
 
     fun toastNext(view: View) {
         Toast.makeText(this, "Skipping to next track", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 

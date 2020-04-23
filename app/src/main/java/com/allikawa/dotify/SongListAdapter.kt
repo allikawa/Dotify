@@ -9,10 +9,12 @@ import android.widget.TextView
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.Toast
+import androidx.recyclerview.widget.DiffUtil
 import com.ericchee.songdataprovider.Song
 
-class SongAdapter(private var listOfSongs: List<Song>): RecyclerView.Adapter<SongAdapter.SongViewHolder>(){
+class SongAdapter(initListOfSongs: List<Song>): RecyclerView.Adapter<SongAdapter.SongViewHolder>(){
 
+    private var listOfSongs: List<Song> = initListOfSongs.toList()
     var onSongClickListener: ((song: Song) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
@@ -29,8 +31,10 @@ class SongAdapter(private var listOfSongs: List<Song>): RecyclerView.Adapter<Son
     }
 
     fun change(newSongs: List<Song>) {
-        listOfSongs = newSongs
-        notifyDataSetChanged()
+        val callback = SongDiffCallback(listOfSongs, newSongs)
+        val diffResult = DiffUtil.calculateDiff(callback)
+        diffResult.dispatchUpdatesTo(this)
+
     }
 
     inner class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

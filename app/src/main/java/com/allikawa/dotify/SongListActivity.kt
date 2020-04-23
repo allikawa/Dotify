@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_song_list.*
 import android.widget.Toast
+import androidx.recyclerview.widget.DiffUtil
 import com.allikawa.dotify.MainActivity.Companion.SONG_KEY
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
