@@ -3,7 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?selectableItemBackground"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginLeft="16dp">
 
     <ImageView
         android:id="@+id/ivAlbumCover"
@@ -19,9 +24,31 @@
         tools:text="Song Name"
         app:layout_constraintLeft_toRightOf="@+id/ivAlbumCover"
         app:layout_constraintTop_toTopOf="@+id/ivAlbumCover"
+        app:layout_constraintBottom_toTopOf="@+id/tvArtistName"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="20sp"
+        android:textColor="#2E2E2E"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="false"
+        />
+
+    <TextView
+        android:id="@+id/tvArtistName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is supposed to be artist"
+        app:layout_constraintLeft_toRightOf="@+id/ivAlbumCover"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongName"
         app:layout_constraintBottom_toBottomOf="@+id/ivAlbumCover"
         android:layout_marginLeft="16dp"
-        android:textSize="20sp"
+        android:layout_marginRight="16dp"
+        android:textSize="16sp"
+        android:textColor="#7F7F7F"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="false"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

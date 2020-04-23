@@ -14,6 +14,44 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_song"
+        />
+
+    <FrameLayout
+        android:id="@+id/flPlay"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="#F3F3F3"
+        />
+
+    <Button
+        android:id="@+id/btnShuffle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/flPlay"
+        app:layout_constraintTop_toTopOf="@+id/flPlay"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:text="shuffle"
+        />
+
+    <TextView
+        android:id="@+id/tvCurrentTrack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/flPlay"
+        app:layout_constraintBottom_toBottomOf="@+id/flPlay"
+        app:layout_constraintRight_toLeftOf="@+id/btnShuffle"
+        app:layout_constraintLeft_toLeftOf="@id/flPlay"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="false"
+        android:textSize="20sp"
         />
 
 
