@@ -32,7 +32,6 @@ class SongAdapter(initListOfSongs: List<Song>): RecyclerView.Adapter<SongAdapter
         val callback = SongDiffCallback(listOfSongs, newSongs)
         val diffResult = DiffUtil.calculateDiff(callback)
         diffResult.dispatchUpdatesTo(this)
-
     }
 
     fun remove(newSongs: List<Song>) {

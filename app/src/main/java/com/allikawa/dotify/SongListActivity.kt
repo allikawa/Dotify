@@ -38,8 +38,6 @@ class SongListActivity : AppCompatActivity() {
         songAdapter.onLongSongClickListener = {song, position ->
             val newSongs = allSongs.apply {
                 removeAt(position)
-//                songAdapter.notifyItemRangeChanged(position, allSongs.size - 1)
-//                songAdapter.notifyDataSetChanged()
                 Toast.makeText(this@SongListActivity,"You deleted ${song.title}", Toast.LENGTH_SHORT).show()
             }
             songAdapter.remove(newSongs)
