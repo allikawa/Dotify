@@ -1,16 +1,15 @@
-package com.allikawa.dotify
+package com.allikawa.dotify.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.allikawa.dotify.R
 import com.ericchee.songdataprovider.Song
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 

@@ -1,17 +1,16 @@
-package com.allikawa.dotify
+package com.allikawa.dotify.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AdapterView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_song_list.*
 import android.widget.Toast
-import androidx.recyclerview.widget.DiffUtil
-import com.allikawa.dotify.MainActivity.Companion.SONG_KEY
+import com.allikawa.dotify.R
+import com.allikawa.dotify.SongAdapter
+import com.allikawa.dotify.activity.MainActivity.Companion.SONG_KEY
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
-import java.util.Collections.shuffle
 
 class SongListActivity : AppCompatActivity() {
 
@@ -23,7 +22,7 @@ class SongListActivity : AppCompatActivity() {
 
         val songAdapter = SongAdapter(allSongs)
 
-        songAdapter.onSongClickListener = { song: Song ->
+        songAdapter.onSongSelected = { song: Song ->
             val tvCurrentTrack= findViewById<TextView>(R.id.tvCurrentTrack)
             tvCurrentTrack.text = "${song.title} - ${song.artist}"
 
