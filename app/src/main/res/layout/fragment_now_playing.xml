@@ -84,7 +84,7 @@
         android:textSize="24dp" />
 
     <TextView
-        android:id="@+id/tvPlayNum"
+        android:id="@+id/tvPlayRandNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="13123"

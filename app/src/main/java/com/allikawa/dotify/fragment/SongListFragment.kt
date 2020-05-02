@@ -22,12 +22,13 @@ class SongListFragment: Fragment() {
     private var onSongClickListener: OnSongClickListener? = null
     private lateinit var listOfSongs: MutableList<Song>
 
-    private val initialSongs = SongDataProvider.getAllSongs().toMutableList()
+    // private val initialSongs = SongDataProvider.getAllSongs().toMutableList()
 
     companion object {
         val TAG = SongListFragment::class.java.simpleName
 
         private const val ARG_LIST_OF_SONGS = "ARG_LIST_OF_SONGS"
+        private const val CURRENT_SONG = "current_song"
 
         fun getInstance(listOfSongs: List<Song>): SongListFragment {
             return SongListFragment().apply {
@@ -46,6 +47,7 @@ class SongListFragment: Fragment() {
         }
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,6 +64,7 @@ class SongListFragment: Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,44 +73,35 @@ class SongListFragment: Fragment() {
         return layoutInflater.inflate(R.layout.fragment_song_list, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // val allSongs = SongDataProvider.getAllSongs().toMutableList()
 
         songAdapter = SongAdapter(listOfSongs)
         rvSongs.adapter = songAdapter
 
         songAdapter.onSongSelected = { song ->
-            //            val tvCurrentTrack= findViewById<TextView>(R.id.tvCurrentTrack)
-//            val mainContainingActivity = activity as MainContainingActivity
-//            mainContainingActivity.showNowPlayingFragment(song)
-
 
             tvCurrentTrack.text = "${song.title} - ${song.artist}"
 
-//            val intent = Intent(context, MainActivity::class.java)
-//            intent.putExtra(MainActivity.SONG_KEY, song)
-
             flPlay.setOnClickListener {
-                //                startActivity(intent)
                 val tempActivityRef = activity
                 if (tempActivityRef is OnSongClickListener) {
                     onSongClickListener = tempActivityRef
 
                 }
                 onSongClickListener?.onSongClicked(song)
+            }
 
-//                mainContainingActivity.showNowPlayingFragment(song)
+            btnShuffle.setOnClickListener {
+                shuffleList()
             }
         }
+    }
 
-//        val intent = Intent(this, MainActivity::class.java)
-//        intent.putExtra(MainActivity.SONG_KEY, song)
-//
-//        flPlay.setOnClickListener {
-//            startActivity(intent)
-//        }
+    private fun shuffleList() {
+        val shuffledList = listOfSongs.shuffled()
+        songAdapter.change(shuffledList)
     }
 
 }
