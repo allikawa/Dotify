@@ -17,8 +17,10 @@ class NowPlayingFragment : Fragment() {
     private var song: Song? = null
 
     companion object {
+        val TAG: String = NowPlayingFragment::class.java.simpleName
         const val ARG_SONG = "arg_song"
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,13 @@ class NowPlayingFragment : Fragment() {
         }
     }
 
+
+    fun updateSong(song: Song) {
+        this.song = song
+        updateSongViews()
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,19 +47,19 @@ class NowPlayingFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_now_playing, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        updateSongViews()
+    }
 
-//        tvArtistName.text = song.artist
-//        tvSongTitle.text = song.title
-//        ivAlbumCover.setImageResource(song.largeImageID)
 
+    private fun updateSongViews() {
         song?.let {
             tvArtistName.text = it.artist
             tvSongTitle.text = it.title
             ivAlbumCover.setImageResource(it.largeImageID)
         }
-
     }
 
 }

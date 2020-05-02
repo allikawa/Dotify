@@ -19,14 +19,46 @@ import kotlinx.android.synthetic.main.activity_song_list.*
 class SongListFragment: Fragment() {
 
     private lateinit var songAdapter: SongAdapter
-    private val initialSongs = SongDataProvider.getAllSongs().toMutableList()
     private var onSongClickListener: OnSongClickListener? = null
+    private lateinit var listOfSongs: MutableList<Song>
+
+    private val initialSongs = SongDataProvider.getAllSongs().toMutableList()
+
+    companion object {
+        val TAG = SongListFragment::class.java.simpleName
+
+        private const val ARG_LIST_OF_SONGS = "ARG_LIST_OF_SONGS"
+
+        fun getInstance(listOfSongs: List<Song>): SongListFragment {
+            return SongListFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelableArrayList(ARG_LIST_OF_SONGS, ArrayList(listOfSongs))
+                }
+            }
+        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
         if (context is OnSongClickListener) {
             onSongClickListener = context
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let { args ->
+            with(args) {
+                getParcelableArrayList<Song>(ARG_LIST_OF_SONGS)?.let { listOfSongs ->
+                    this@SongListFragment.listOfSongs = listOfSongs.toMutableList()
+                }
+            }
+        }
+
+        arguments?.getParcelableArrayList<Song>(ARG_LIST_OF_SONGS)?.let { listOfSongs ->
+            this.listOfSongs = listOfSongs
         }
     }
 
@@ -43,11 +75,11 @@ class SongListFragment: Fragment() {
 
         // val allSongs = SongDataProvider.getAllSongs().toMutableList()
 
-        songAdapter = SongAdapter(initialSongs)
+        songAdapter = SongAdapter(listOfSongs)
         rvSongs.adapter = songAdapter
 
         songAdapter.onSongSelected = { song ->
-//            val tvCurrentTrack= findViewById<TextView>(R.id.tvCurrentTrack)
+            //            val tvCurrentTrack= findViewById<TextView>(R.id.tvCurrentTrack)
 //            val mainContainingActivity = activity as MainContainingActivity
 //            mainContainingActivity.showNowPlayingFragment(song)
 
@@ -58,7 +90,7 @@ class SongListFragment: Fragment() {
 //            intent.putExtra(MainActivity.SONG_KEY, song)
 
             flPlay.setOnClickListener {
-//                startActivity(intent)
+                //                startActivity(intent)
                 val tempActivityRef = activity
                 if (tempActivityRef is OnSongClickListener) {
                     onSongClickListener = tempActivityRef

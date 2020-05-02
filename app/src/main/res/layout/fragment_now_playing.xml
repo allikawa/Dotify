@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:padding="@dimen/paddingMedium"
     tools:context=".activity.MainActivity"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:clickable="true"
+    android:focusable="true">
 
     <Button
         android:id="@+id/btnChange"

@@ -11,13 +11,13 @@ import com.ericchee.songdataprovider.Song
 
 class SongAdapter(initListOfSongs: List<Song>): RecyclerView.Adapter<SongAdapter.SongViewHolder>(){
 
-    private var listOfSongs: List<Song> = initListOfSongs.toList()
     var onSongSelected: ((song: Song) -> Unit)? = null
     var onLongSongClickListener: ((song: Song, position: Int) -> Unit)? = null
+    private var listOfSongs: List<Song> = initListOfSongs.toMutableList()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_song, parent, false)
-
         return SongViewHolder(view)
     }
 
