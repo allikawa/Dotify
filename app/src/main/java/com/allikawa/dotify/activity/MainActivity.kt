@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.allikawa.dotify.R
 import com.ericchee.songdataprovider.Song
 import kotlinx.android.synthetic.main.activity_main.*
+import java.net.URL
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {

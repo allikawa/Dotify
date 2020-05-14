@@ -2,16 +2,25 @@ package com.allikawa.dotify.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.allikawa.dotify.R
 import com.allikawa.dotify.fragment.NowPlayingFragment
 import com.allikawa.dotify.fragment.OnSongClickListener
 import com.allikawa.dotify.fragment.SongListFragment
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_song_list.*
+import org.json.JSONObject
+import java.lang.Exception
+import java.net.HttpURLConnection
+import java.net.URL
 import kotlin.random.Random
+import android.content.Intent
 
 class MainContainingActivity : AppCompatActivity(), OnSongClickListener {
 
@@ -25,6 +34,9 @@ class MainContainingActivity : AppCompatActivity(), OnSongClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_containing)
+
+//        getSongs()
+        val listofJSONSongs = getSongs().toString()
 
         listOfSongs = SongDataProvider.getAllSongs().toMutableList()
 
@@ -81,4 +93,16 @@ class MainContainingActivity : AppCompatActivity(), OnSongClickListener {
         outState.putInt(PLAY_COUNT, randomNumber)
         super.onSaveInstanceState(outState)
     }
+
+    private fun fetchDataWithGson() {
+        val gson = Gson()
+
+        val song: Song = gson.fromJson(singleSongJSONString, Song::class.java)
+
+        song.content?.let {
+            tvSongTitle.text = song.title
+        }
+
+    }
+
 }

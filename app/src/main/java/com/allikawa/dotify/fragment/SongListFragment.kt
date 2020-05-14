@@ -22,8 +22,6 @@ class SongListFragment: Fragment() {
     private var onSongClickListener: OnSongClickListener? = null
     private lateinit var listOfSongs: MutableList<Song>
 
-    // private val initialSongs = SongDataProvider.getAllSongs().toMutableList()
-
     companion object {
         val TAG = SongListFragment::class.java.simpleName
 
